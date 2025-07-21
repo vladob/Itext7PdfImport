@@ -13,7 +13,7 @@ namespace SqlDataAccess
 
         public static int ConnectToDb()
         {
-            string connectionString = "server=DELL2023_N04;database=BankStatements; User ID=vb; Password=vb";
+            string connectionString = "server=SRVHPV;database=BankStatements; User ID=vb; Password=vb";
             con = new SqlConnection(connectionString);
             con.Open();
             return 0;
@@ -52,7 +52,7 @@ namespace SqlDataAccess
 
         public static int PopulatePdfRawData(List<RectAndText> extractedData)
         {
-            string queryStatementConstant = "INSERT INTO PdfRawdata ([DocId],[Page],[Type],[Left],[Right],[Top],[Bottom],[BaseLine],[Text]) ";
+            string queryStatementConstant = "INSERT INTO PdfRawdata ([DocId],[Page],[Type],[Left],[Right],[Top],[Bottom],[BaseLine],[Text],[IsBold],[isItalic]) ";
             string queryStmt = "";
             int currentPage = 0;
 
@@ -81,7 +81,9 @@ namespace SqlDataAccess
                             item.Top + " AS [Top]," +
                             item.Bottom + " AS [Bottom]," +
                             item.BaseLine + " AS [BaseLine]," +
-                            "LEFT('"+item.Text + "',500) AS [Text]";
+                            "LEFT('" + item.Text + "',500) AS [Text], " +
+                            (item.IsBold ? 1 : 0) + " AS [IsBold]," +
+                            (item.IsItalic ? 1 : 0) + " AS [IsItalic] ";
 
                     cmd = new SqlCommand(queryStatementConstant + queryStmt, con);
                     cmd.ExecuteNonQuery();

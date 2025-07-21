@@ -51,18 +51,21 @@ namespace Itext7PdfImport
             // 
             // btnImport
             // 
-            btnImport.Location = new Point(236, 12);
+            btnImport.Enabled = false;
+            btnImport.Location = new Point(206, 9);
+            btnImport.Margin = new Padding(3, 2, 3, 2);
             btnImport.Name = "btnImport";
-            btnImport.Size = new Size(94, 29);
+            btnImport.Size = new Size(82, 22);
             btnImport.TabIndex = 0;
             btnImport.Text = "Import";
             btnImport.UseVisualStyleBackColor = true;
             // 
             // btnParsePdf
             // 
-            btnParsePdf.Location = new Point(114, 12);
+            btnParsePdf.Location = new Point(100, 9);
+            btnParsePdf.Margin = new Padding(3, 2, 3, 2);
             btnParsePdf.Name = "btnParsePdf";
-            btnParsePdf.Size = new Size(116, 29);
+            btnParsePdf.Size = new Size(102, 22);
             btnParsePdf.TabIndex = 4;
             btnParsePdf.Text = "Parse PDF Files";
             btnParsePdf.UseVisualStyleBackColor = true;
@@ -70,9 +73,10 @@ namespace Itext7PdfImport
             // 
             // btnSelectFiles
             // 
-            btnSelectFiles.Location = new Point(14, 12);
+            btnSelectFiles.Location = new Point(12, 9);
+            btnSelectFiles.Margin = new Padding(3, 2, 3, 2);
             btnSelectFiles.Name = "btnSelectFiles";
-            btnSelectFiles.Size = new Size(94, 29);
+            btnSelectFiles.Size = new Size(82, 22);
             btnSelectFiles.TabIndex = 3;
             btnSelectFiles.Text = "Select Files";
             btnSelectFiles.UseVisualStyleBackColor = true;
@@ -96,14 +100,15 @@ namespace Itext7PdfImport
             dataGridFiles.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridFiles.Columns.AddRange(new DataGridViewColumn[] { FileName, FullPath, AddedAt, LayoutName, Status, Errors });
             dataGridFiles.EditMode = DataGridViewEditMode.EditProgrammatically;
-            dataGridFiles.Location = new Point(12, 47);
+            dataGridFiles.Location = new Point(10, 35);
+            dataGridFiles.Margin = new Padding(3, 2, 3, 2);
             dataGridFiles.MultiSelect = false;
             dataGridFiles.Name = "dataGridFiles";
             dataGridFiles.ReadOnly = true;
             dataGridFiles.RowHeadersVisible = false;
             dataGridFiles.RowHeadersWidth = 51;
             dataGridFiles.ShowEditingIcon = false;
-            dataGridFiles.Size = new Size(936, 232);
+            dataGridFiles.Size = new Size(819, 174);
             dataGridFiles.TabIndex = 5;
             // 
             // FileName
@@ -163,11 +168,12 @@ namespace Itext7PdfImport
             // textBoxOutput
             // 
             textBoxOutput.Anchor = AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-            textBoxOutput.Location = new Point(14, 285);
+            textBoxOutput.Location = new Point(12, 214);
+            textBoxOutput.Margin = new Padding(3, 2, 3, 2);
             textBoxOutput.Multiline = true;
             textBoxOutput.Name = "textBoxOutput";
             textBoxOutput.ScrollBars = ScrollBars.Vertical;
-            textBoxOutput.Size = new Size(934, 146);
+            textBoxOutput.Size = new Size(818, 110);
             textBoxOutput.TabIndex = 6;
             // 
             // openFileDialog1
@@ -178,23 +184,26 @@ namespace Itext7PdfImport
             // 
             statusStrip1.ImageScalingSize = new Size(20, 20);
             statusStrip1.Items.AddRange(new ToolStripItem[] { toolStripStatusLabel1 });
-            statusStrip1.Location = new Point(0, 430);
+            statusStrip1.Location = new Point(0, 320);
             statusStrip1.Name = "statusStrip1";
-            statusStrip1.Size = new Size(960, 26);
+            statusStrip1.Padding = new Padding(1, 0, 12, 0);
+            statusStrip1.Size = new Size(840, 22);
             statusStrip1.TabIndex = 7;
             statusStrip1.Text = "statusStrip1";
             // 
             // toolStripStatusLabel1
             // 
             toolStripStatusLabel1.Name = "toolStripStatusLabel1";
-            toolStripStatusLabel1.Size = new Size(151, 20);
+            toolStripStatusLabel1.Size = new Size(118, 17);
             toolStripStatusLabel1.Text = "toolStripStatusLabel1";
             // 
             // buttonParseForm
             // 
-            buttonParseForm.Location = new Point(336, 12);
+            buttonParseForm.Enabled = false;
+            buttonParseForm.Location = new Point(294, 9);
+            buttonParseForm.Margin = new Padding(3, 2, 3, 2);
             buttonParseForm.Name = "buttonParseForm";
-            buttonParseForm.Size = new Size(187, 29);
+            buttonParseForm.Size = new Size(164, 22);
             buttonParseForm.TabIndex = 8;
             buttonParseForm.Text = "Parse PDF Form";
             buttonParseForm.UseVisualStyleBackColor = true;
@@ -202,9 +211,9 @@ namespace Itext7PdfImport
             // 
             // FrmMain
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(960, 456);
+            ClientSize = new Size(840, 342);
             Controls.Add(buttonParseForm);
             Controls.Add(statusStrip1);
             Controls.Add(textBoxOutput);
@@ -212,6 +221,7 @@ namespace Itext7PdfImport
             Controls.Add(btnParsePdf);
             Controls.Add(btnSelectFiles);
             Controls.Add(btnImport);
+            Margin = new Padding(3, 2, 3, 2);
             Name = "FrmMain";
             Text = "PdfImport";
             ((System.ComponentModel.ISupportInitialize)dataGridFiles).EndInit();

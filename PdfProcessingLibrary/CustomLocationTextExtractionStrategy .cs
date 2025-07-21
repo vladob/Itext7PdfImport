@@ -17,6 +17,12 @@ namespace Itext7PdfImport
             {
                 TextRenderInfo renderInfo = (TextRenderInfo)data;
 
+                // Get the font info from the render info
+
+                var fontName = renderInfo.GetFont().GetFontProgram()?.ToString()?.ToLowerInvariant() ?? "";
+                bool isBold = fontName.Contains("bold");
+                bool isItalic = fontName.Contains("italic") || fontName.Contains("oblique");
+
                 // Get the bounding box of the text chunk
                 // In new version just baseLine will be used
                 Rectangle ascentRect = renderInfo.GetAscentLine().GetBoundingRectangle();
@@ -25,14 +31,36 @@ namespace Itext7PdfImport
 
                 // Adjust top if is inside boundaries of previous chunk
                 // Add the rectangle and the text to the list
-                textChunks.Add(new RectAndText("text", (int)baseRect.GetLeft(), (int)baseRect.GetRight(), (int)ascentRect.GetTop(), (int)descentRect.GetBottom(), (int)baseRect.GetTop(), renderInfo.GetText(), pageNumber));
+                textChunks.Add(new RectAndText(
+                    type: "text", 
+                    left: (int)baseRect.GetLeft(), 
+                    right: (int)baseRect.GetRight(), 
+                    top: (int)ascentRect.GetTop(), 
+                    bottom: (int)descentRect.GetBottom(), 
+                    baseLine: (int)baseRect.GetTop(), 
+                    text: renderInfo.GetText(),
+                    pageNumber: pageNumber,
+                    isBold: isBold,
+                    isItalic: isItalic
+                 ));
                 /// New version will include just Left, Right, BaseLine
                 // textChunks.Add(new RectAndText((int)baseRect.GetLeft(), (int)baseRect.GetRight(), (int)baseRect.GetTop(), renderInfo.GetText(), pageNumber));
             } else if (type == EventType.RENDER_PATH)
             {
                 PathRenderInfo renderInfo = (PathRenderInfo)data;
                 Matrix ctm = renderInfo.GetGraphicsState().GetCtm();
-                textChunks.Add(new RectAndText("line", (int)ctm.Get(6), 0, (int)ctm.Get(7), (int)ctm.Get(7), (int)ctm.Get(7),"<line>",pageNumber));
+                textChunks.Add(new RectAndText(
+                    type: "line", 
+                    left: (int)ctm.Get(6), 
+                    right: 0, 
+                    top: (int)ctm.Get(7), 
+                    bottom: (int)ctm.Get(7), 
+                    baseLine: (int)ctm.Get(7),
+                    text: "<line>",
+                    pageNumber: pageNumber,
+                    isBold: false,
+                    isItalic: false
+                    ));
             }
             base.EventOccurred(data, type);
         }

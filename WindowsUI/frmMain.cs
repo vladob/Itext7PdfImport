@@ -43,6 +43,12 @@ namespace Itext7PdfImport
             }
         }
 
+        private void PrintToStatusPanel(string text)
+        {
+            textBoxOutput.Text += DateTime.Now.ToString() + text + "...\r\n";
+//            textBoxOutput.Text += text + "...\r\n";
+        }
+
         private async void BtnParsePdf_Click(object sender, EventArgs e)
         {
             int result;
@@ -52,7 +58,8 @@ namespace Itext7PdfImport
 
             foreach (FileToParse fileToParse in selectedFiles)
             {
-                textBoxOutput.Text += DateTime.Now.ToString() + " reading PDF file: " + fileToParse.FileName + "...\r\n";
+                //textBoxOutput.Text += DateTime.Now.ToString() + " reading PDF file: " + fileToParse.FileName + "...\r\n";
+                PrintToStatusPanel(" reading PDF file: " + fileToParse.FileName + "...\r\n");
 
                 await OpenPdf(fileToParse.FullPath, lastEnteredPassword);
                 //result = await Task.Run(() => PdfExtractor.ExtractTextWithCoords(fileToParse.FullPath));
@@ -61,10 +68,12 @@ namespace Itext7PdfImport
                 if (result == 0)
                 {
                     //PdfExtractor.ConcatenateTextChunks();
-                    textBoxOutput.Text += DateTime.Now.ToString() + " writing data...\r\n";
+                    //textBoxOutput.Text += DateTime.Now.ToString() + " writing data...\r\n";
+                    PrintToStatusPanel(" writing data...");
                     WriteDocument(fileToParse.FullPath);
                     Debug.WriteLine("Done!");
-                    textBoxOutput.Text += DateTime.Now.ToString() + " data saved!\r\n";
+                    //textBoxOutput.Text += DateTime.Now.ToString() + " data saved!\r\n";
+                    PrintToStatusPanel("data saved!");
                 }
                 else
                 {
@@ -83,7 +92,8 @@ namespace Itext7PdfImport
                 if (result == 0)
                 {
                     PdfExtractor.ConcatenateTextChunks();
-                    textBoxOutput.Text += DateTime.Now.ToString() + " data retreived!\r\n";
+                    //textBoxOutput.Text += DateTime.Now.ToString() + " data retreived!\r\n";
+                    PrintToStatusPanel("data retreived!");
                 }
             }
             catch (PasswordRequiredException)
@@ -124,7 +134,9 @@ namespace Itext7PdfImport
         {
             if (target == "Status")
             {
-                textBoxOutput.Text += $"{DateTime.Now} {progressMessage}\r\n";
+                
+                //textBoxOutput.Text += $"{DateTime.Now} {progressMessage}\r\n";
+                PrintToStatusPanel($"{progressMessage}");
                 // Set the caret position to the end of the text and scroll to that position
                 textBoxOutput.SelectionStart = textBoxOutput.Text.Length;
                 textBoxOutput.ScrollToCaret();

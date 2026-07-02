@@ -45,8 +45,13 @@ namespace Itext7PdfImport
             statusStrip1 = new StatusStrip();
             toolStripStatusLabel1 = new ToolStripStatusLabel();
             buttonParseForm = new Button();
+            splitContainer1 = new SplitContainer();
             ((System.ComponentModel.ISupportInitialize)dataGridFiles).BeginInit();
             statusStrip1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)splitContainer1).BeginInit();
+            splitContainer1.Panel1.SuspendLayout();
+            splitContainer1.Panel2.SuspendLayout();
+            splitContainer1.SuspendLayout();
             SuspendLayout();
             // 
             // btnImport
@@ -87,7 +92,6 @@ namespace Itext7PdfImport
             dataGridFiles.AllowUserToAddRows = false;
             dataGridFiles.AllowUserToDeleteRows = false;
             dataGridFiles.AllowUserToResizeRows = false;
-            dataGridFiles.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             dataGridFiles.ClipboardCopyMode = DataGridViewClipboardCopyMode.EnableWithoutHeaderText;
             dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle1.BackColor = SystemColors.ActiveCaption;
@@ -99,8 +103,9 @@ namespace Itext7PdfImport
             dataGridFiles.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             dataGridFiles.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridFiles.Columns.AddRange(new DataGridViewColumn[] { FileName, FullPath, AddedAt, LayoutName, Status, Errors });
+            dataGridFiles.Dock = DockStyle.Fill;
             dataGridFiles.EditMode = DataGridViewEditMode.EditProgrammatically;
-            dataGridFiles.Location = new Point(10, 35);
+            dataGridFiles.Location = new Point(0, 0);
             dataGridFiles.Margin = new Padding(3, 2, 3, 2);
             dataGridFiles.MultiSelect = false;
             dataGridFiles.Name = "dataGridFiles";
@@ -108,7 +113,7 @@ namespace Itext7PdfImport
             dataGridFiles.RowHeadersVisible = false;
             dataGridFiles.RowHeadersWidth = 51;
             dataGridFiles.ShowEditingIcon = false;
-            dataGridFiles.Size = new Size(819, 174);
+            dataGridFiles.Size = new Size(816, 140);
             dataGridFiles.TabIndex = 5;
             // 
             // FileName
@@ -167,13 +172,13 @@ namespace Itext7PdfImport
             // 
             // textBoxOutput
             // 
-            textBoxOutput.Anchor = AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-            textBoxOutput.Location = new Point(12, 214);
+            textBoxOutput.Dock = DockStyle.Fill;
+            textBoxOutput.Location = new Point(0, 0);
             textBoxOutput.Margin = new Padding(3, 2, 3, 2);
             textBoxOutput.Multiline = true;
             textBoxOutput.Name = "textBoxOutput";
             textBoxOutput.ScrollBars = ScrollBars.Vertical;
-            textBoxOutput.Size = new Size(818, 110);
+            textBoxOutput.Size = new Size(816, 137);
             textBoxOutput.TabIndex = 6;
             // 
             // openFileDialog1
@@ -182,12 +187,14 @@ namespace Itext7PdfImport
             // 
             // statusStrip1
             // 
+            statusStrip1.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
+            statusStrip1.Dock = DockStyle.None;
             statusStrip1.ImageScalingSize = new Size(20, 20);
             statusStrip1.Items.AddRange(new ToolStripItem[] { toolStripStatusLabel1 });
             statusStrip1.Location = new Point(0, 320);
             statusStrip1.Name = "statusStrip1";
             statusStrip1.Padding = new Padding(1, 0, 12, 0);
-            statusStrip1.Size = new Size(840, 22);
+            statusStrip1.Size = new Size(164, 22);
             statusStrip1.TabIndex = 7;
             statusStrip1.Text = "statusStrip1";
             // 
@@ -209,15 +216,32 @@ namespace Itext7PdfImport
             buttonParseForm.UseVisualStyleBackColor = true;
             buttonParseForm.Click += buttonParseForm_Click;
             // 
+            // splitContainer1
+            // 
+            splitContainer1.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            splitContainer1.Location = new Point(12, 36);
+            splitContainer1.Name = "splitContainer1";
+            splitContainer1.Orientation = Orientation.Horizontal;
+            // 
+            // splitContainer1.Panel1
+            // 
+            splitContainer1.Panel1.Controls.Add(dataGridFiles);
+            // 
+            // splitContainer1.Panel2
+            // 
+            splitContainer1.Panel2.Controls.Add(textBoxOutput);
+            splitContainer1.Size = new Size(816, 281);
+            splitContainer1.SplitterDistance = 140;
+            splitContainer1.TabIndex = 9;
+            // 
             // FrmMain
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(840, 342);
+            Controls.Add(splitContainer1);
             Controls.Add(buttonParseForm);
             Controls.Add(statusStrip1);
-            Controls.Add(textBoxOutput);
-            Controls.Add(dataGridFiles);
             Controls.Add(btnParsePdf);
             Controls.Add(btnSelectFiles);
             Controls.Add(btnImport);
@@ -227,6 +251,11 @@ namespace Itext7PdfImport
             ((System.ComponentModel.ISupportInitialize)dataGridFiles).EndInit();
             statusStrip1.ResumeLayout(false);
             statusStrip1.PerformLayout();
+            splitContainer1.Panel1.ResumeLayout(false);
+            splitContainer1.Panel2.ResumeLayout(false);
+            splitContainer1.Panel2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)splitContainer1).EndInit();
+            splitContainer1.ResumeLayout(false);
             ResumeLayout(false);
             PerformLayout();
         }
@@ -248,5 +277,6 @@ namespace Itext7PdfImport
         private StatusStrip statusStrip1;
         private ToolStripStatusLabel toolStripStatusLabel1;
         private Button buttonParseForm;
+        private SplitContainer splitContainer1;
     }
 }
